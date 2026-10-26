@@ -1,0 +1,16 @@
+{
+  "environment": "Chromium headless + mocked Obsidian SDK",
+  "checks": [
+    "Empty query preserves all candidates and disables slider",
+    "0/100 thresholds update counts without moving original preview nodes",
+    "Parse errors preserve last successful visibility",
+    "Clear restores original state",
+    "Empty result has actionable guidance",
+    "GraphFrontier mock snapshot is read-only and visibly scoped to preview",
+    "Invalidation reports stale snapshot and refresh recovers",
+    "Light/dark 400px layout has no horizontal overflow",
+    "Close releases event subscriptions; re-enable creates a working session",
+    "Empty vault renders normally"
+  ],
+  "pageErrors": []
+}

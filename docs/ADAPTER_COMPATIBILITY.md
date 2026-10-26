@@ -4,12 +4,12 @@ Audited 2026-10-26 against shallow source checkouts and current release metadata
 Source inspection and mocked contracts are **not live Obsidian integration tests**.
 No third-party source is bundled. GraphPro is outside scope.
 
-| Target | Manifest ID | Source/release version | License | Ripple capability |
-| --- | --- | --- | --- | --- |
-| GraphFrontier | `graphfrontier` | 0.8.6 | MIT | Version-pinned, read-only visible graph snapshot; external filtering blocked |
-| Advanced Graph View | `graph-insight` | 0.10.1 | MIT | Detection only; filtering unsupported |
-| Smart Cluster Graph | `smart-cluster-graph` | 1.2.0 | MIT | Detection only; filtering unsupported |
-| Galaxy View | `galaxy-view` | 0.6.1 | MIT | Detection only; filtering unsupported |
+| Target              | Manifest ID           | Source/release version | License | Ripple capability                                                            |
+| ------------------- | --------------------- | ---------------------- | ------- | ---------------------------------------------------------------------------- |
+| GraphFrontier       | `graphfrontier`       | 0.8.6                  | MIT     | Version-pinned, read-only visible graph snapshot; external filtering blocked |
+| Advanced Graph View | `graph-insight`       | 0.10.1                 | MIT     | Detection only; filtering unsupported                                        |
+| Smart Cluster Graph | `smart-cluster-graph` | 1.2.0                  | MIT     | Detection only; filtering unsupported                                        |
+| Galaxy View         | `galaxy-view`         | 0.6.1                  | MIT     | Detection only; filtering unsupported                                        |
 
 ## GraphFrontier
 
