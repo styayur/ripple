@@ -1,9 +1,9 @@
 {
   "id": "ripple-graph-filter",
-  "name": "Ripple Graph Filter",
-  "version": "0.1.0-alpha.1",
+  "name": "Ripple Graph Workspace",
+  "version": "0.2.0",
   "minAppVersion": "1.14.5",
-  "description": "Filter a local graph using explainable keyword relevance and a reversible threshold.",
+  "description": "Explore linked notes in a local graph workspace with shared relevance filtering and four views.",
   "author": "styayur",
   "authorUrl": "https://github.com/styayur",
   "isDesktopOnly": true

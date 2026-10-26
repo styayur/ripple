@@ -1,7 +1,7 @@
 name: CI
 on:
   push:
-    branches: [main, feat/ripple-graph-filter]
+    branches: [main, feat/ripple-graph-filter, feat/unified-graph-workspace-v0.2]
   pull_request:
   workflow_dispatch:
 permissions:
@@ -53,6 +53,7 @@ jobs:
       - run: python -m pip install -r tests/browser/requirements.txt
       - run: python -m playwright install --with-deps chromium
       - run: npm run test:browser
+      - run: python scripts/render-benchmark.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:

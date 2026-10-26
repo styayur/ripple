@@ -2,6 +2,8 @@ import { performance } from 'node:perf_hooks';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { FilterEngine } from '../src/core/filter-engine';
 import type { GraphNode } from '../src/core/types';
+import { analyzeGraph, seedPositions } from '../src/core/graph-algorithms';
+import { createSimulation } from '../src/renderers/layout-engine';
 
 const observations = [];
 for (const size of [1_000, 10_000, 50_000]) {
@@ -28,6 +30,22 @@ for (const size of [1_000, 10_000, 50_000]) {
   for (let threshold = 0; threshold <= 100; threshold++)
     checksum += engine.filter('ocean', threshold).visibleIds.size;
   const end = performance.now();
+  const analysis = analyzeGraph(engine.graph);
+  const analyzed = performance.now();
+  const positions = seedPositions(engine.graph, 'galaxy', analysis);
+  const seeded = performance.now();
+  const simulation = createSimulation({
+    nodes: nodes.map((node) => ({
+      id: node.id,
+      x: positions.get(node.id)!.x,
+      y: positions.get(node.id)!.y,
+      pinned: false,
+    })),
+    edges,
+  });
+  simulation.tick(2);
+  simulation.stop();
+  const layout = performance.now();
   observations.push({
     nodes: size,
     edges: edges.length,
@@ -36,6 +54,9 @@ for (const size of [1_000, 10_000, 50_000]) {
     cached101ThresholdsMs: end - scored,
     heapDeltaMiB: (process.memoryUsage().heapUsed - heapBefore) / 1024 ** 2,
     checksum,
+    analyzeMs: analyzed - end,
+    seed3DMs: seeded - analyzed,
+    forceSetupAnd2TicksMs: layout - seeded,
   });
 }
 await mkdir('reports', { recursive: true });

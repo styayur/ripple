@@ -31,9 +31,16 @@ export function installDomHelpers(): void {
   prototype.createDiv = function (this: HTMLElement, options: ElementOptions = {}) {
     return this.createEl('div', options);
   };
+  prototype.createSpan = function (this: HTMLElement, options: ElementOptions = {}) {
+    return this.createEl('span', options);
+  };
+  prototype.appendText = function (this: HTMLElement, text: string) {
+    this.appendChild(this.ownerDocument.createTextNode(text));
+  };
 }
 
 export class TFile {
+  stat = { mtime: 1, size: 10 };
   constructor(
     readonly path: string,
     readonly basename: string,
@@ -64,6 +71,7 @@ export class ItemView {
   unload(): void {
     for (const callback of this.cleanup.reverse()) callback();
   }
+  async setState(): Promise<void> {}
 }
 
 export class Setting {

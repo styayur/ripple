@@ -1,0 +1,220 @@
+{
+  "environment": "Chromium 153.0.8010.12, headless SwiftShader, 1440x1000, synthetic Mock SDK host",
+  "note": "Single run per size/mode. Initialization includes automation roundtrip; CPU draw is command submission, not GPU completion. Heap excludes worker/GPU memory; no forced GC. Frame intervals sampled during toolbar zoom. No claim of real Vault performance.",
+  "observations": [
+    {
+      "nodes": 1000,
+      "edges": 2000,
+      "mode": "frontier",
+      "syntheticIndexAndControllerWallMs": 42.74529998656362,
+      "modeInitializationWallMs": 64.1536999901291,
+      "frameIntervalsMs": [
+        15.299999982118607, 17.30000001192093, 15.800000011920929, 19.899999976158142,
+        19.600000023841858, 10.199999988079071, 16.80000001192093, 15.799999982118607,
+        17.900000005960464, 1644, 4.800000011920929, 16.899999976158142
+      ],
+      "cpuDrawMs": 0.6,
+      "firstDrawMs": 0,
+      "contextMs": 0,
+      "geometryMs": 0,
+      "drawnNodes": 0,
+      "heapUsedMiB": 9.133397102355957
+    },
+    {
+      "nodes": 1000,
+      "edges": 2000,
+      "mode": "dense",
+      "syntheticIndexAndControllerWallMs": 42.74529998656362,
+      "modeInitializationWallMs": 30.19339998718351,
+      "frameIntervalsMs": [
+        0.8999999761581421, 17.100000023841858, 15.799999982118607, 19.5, 13.300000011920929,
+        17.19999998807907, 16.900000005960464, 17.099999994039536, 15.400000005960464,
+        17.900000005960464, 17.69999998807907, 14.5
+      ],
+      "cpuDrawMs": 0.2,
+      "firstDrawMs": 0,
+      "contextMs": 0,
+      "geometryMs": 0,
+      "drawnNodes": 8,
+      "heapUsedMiB": 10.135180473327637
+    },
+    {
+      "nodes": 1000,
+      "edges": 2000,
+      "mode": "cluster",
+      "syntheticIndexAndControllerWallMs": 42.74529998656362,
+      "modeInitializationWallMs": 39.74290000041947,
+      "frameIntervalsMs": [
+        3.9000000059604645, 7.199999988079071, 16.700000017881393, 16.19999998807907,
+        16.80000001192093, 17.5, 15.199999988079071, 17.099999994039536, 18.700000017881393,
+        18.599999994039536, 12.599999994039536, 19
+      ],
+      "cpuDrawMs": 0.7,
+      "firstDrawMs": 0,
+      "contextMs": 0,
+      "geometryMs": 0,
+      "drawnNodes": 10,
+      "heapUsedMiB": 10.696063995361328
+    },
+    {
+      "nodes": 1000,
+      "edges": 2000,
+      "mode": "galaxy",
+      "syntheticIndexAndControllerWallMs": 42.74529998656362,
+      "modeInitializationWallMs": 196.03559997631237,
+      "frameIntervalsMs": [
+        1, 17.299999982118607, 15.700000017881393, 17, 16.899999976158142, 16.100000023841858, 18.5,
+        15.599999994039536, 16.299999982118607, 17.100000023841858, 16.69999998807907, 16.5
+      ],
+      "cpuDrawMs": 0.3,
+      "firstDrawMs": 19.3,
+      "contextMs": 22,
+      "geometryMs": 7.4,
+      "drawnNodes": 1000,
+      "heapUsedMiB": 7.729723930358887
+    },
+    {
+      "nodes": 10000,
+      "edges": 20000,
+      "mode": "frontier",
+      "syntheticIndexAndControllerWallMs": 750.7306000043172,
+      "modeInitializationWallMs": 42.98890000791289,
+      "frameIntervalsMs": [
+        3.5999999940395355, 12.199999988079071, 16.100000023841858, 15.699999988079071,
+        16.599999994039536, 16.400000005960464, 17.30000001192093, 16.599999994039536,
+        17.900000005960464, 17.899999976158142, 13.600000023841858, 16.299999982118607
+      ],
+      "cpuDrawMs": 2.3,
+      "firstDrawMs": 0,
+      "contextMs": 0,
+      "geometryMs": 0,
+      "drawnNodes": 1,
+      "heapUsedMiB": 34.490614891052246
+    },
+    {
+      "nodes": 10000,
+      "edges": 20000,
+      "mode": "dense",
+      "syntheticIndexAndControllerWallMs": 750.7306000043172,
+      "modeInitializationWallMs": 65.82099999650382,
+      "frameIntervalsMs": [
+        3.9000000059604645, 6.5, 18.400000005960464, 13.099999994039536, 16.400000005960464,
+        17.80000001192093, 16.799999982118607, 17, 17.599999994039536, 17.80000001192093, 14,
+        21.80000001192093
+      ],
+      "cpuDrawMs": 2.8,
+      "firstDrawMs": 0,
+      "contextMs": 0,
+      "geometryMs": 0,
+      "drawnNodes": 96,
+      "heapUsedMiB": 27.383414268493652
+    },
+    {
+      "nodes": 10000,
+      "edges": 20000,
+      "mode": "cluster",
+      "syntheticIndexAndControllerWallMs": 750.7306000043172,
+      "modeInitializationWallMs": 312.7469999890309,
+      "frameIntervalsMs": [
+        14, 11.799999982118607, 11.200000017881393, 16, 6.9000000059604645, 16, 19.899999976158142,
+        12.900000005960464, 19.099999994039536, 13.800000011920929, 17.599999994039536,
+        15.300000011920929
+      ],
+      "cpuDrawMs": 3.2,
+      "firstDrawMs": 0,
+      "contextMs": 0,
+      "geometryMs": 0,
+      "drawnNodes": 124,
+      "heapUsedMiB": 36.69255542755127
+    },
+    {
+      "nodes": 10000,
+      "edges": 20000,
+      "mode": "galaxy",
+      "syntheticIndexAndControllerWallMs": 750.7306000043172,
+      "modeInitializationWallMs": 4155.453500017757,
+      "frameIntervalsMs": [
+        1.7000000178813934, 8.5, 13.900000005960464, 17.099999994039536, 16.400000005960464, 17,
+        19.299999982118607, 14, 17.400000005960464, 16.5, 17.5, 15.400000005960464
+      ],
+      "cpuDrawMs": 0.4,
+      "firstDrawMs": 27.1,
+      "contextMs": 4082.5,
+      "geometryMs": 13.2,
+      "drawnNodes": 10000,
+      "heapUsedMiB": 35.10904502868652
+    },
+    {
+      "nodes": 50000,
+      "edges": 100000,
+      "mode": "frontier",
+      "syntheticIndexAndControllerWallMs": 2742.231799988076,
+      "modeInitializationWallMs": 78.38069999706931,
+      "frameIntervalsMs": [
+        25.80000001192093, 18.900000005960464, 15.699999988079071, 20.200000017881393,
+        14.199999988079071, 13.599999994039536, 22, 18, 19.700000017881393, 16.299999982118607,
+        29.900000005960464, 16.900000005960464
+      ],
+      "cpuDrawMs": 16.4,
+      "firstDrawMs": 0,
+      "contextMs": 0,
+      "geometryMs": 0,
+      "drawnNodes": 1,
+      "heapUsedMiB": 146.39694499969482
+    },
+    {
+      "nodes": 50000,
+      "edges": 100000,
+      "mode": "dense",
+      "syntheticIndexAndControllerWallMs": 2742.231799988076,
+      "modeInitializationWallMs": 90.15539998654276,
+      "frameIntervalsMs": [
+        11, 12.299999982118607, 17.700000017881393, 19.19999998807907, 16.099999994039536,
+        17.900000005960464, 13.900000005960464, 15.099999994039536, 10.5, 19.30000001192093,
+        146.69999998807907, 20
+      ],
+      "cpuDrawMs": 19.2,
+      "firstDrawMs": 0,
+      "contextMs": 0,
+      "geometryMs": 0,
+      "drawnNodes": 504,
+      "heapUsedMiB": 148.60147380828857
+    },
+    {
+      "nodes": 50000,
+      "edges": 100000,
+      "mode": "cluster",
+      "syntheticIndexAndControllerWallMs": 2742.231799988076,
+      "modeInitializationWallMs": 310.3187999804504,
+      "frameIntervalsMs": [
+        166.5, 74.40000000596046, 99, 28, 24.099999994039536, 31.5, 20.599999994039536,
+        18.599999994039536, 18.700000017881393, 19.69999998807907, 14.300000011920929,
+        17.399999976158142
+      ],
+      "cpuDrawMs": 16.8,
+      "firstDrawMs": 0,
+      "contextMs": 0,
+      "geometryMs": 0,
+      "drawnNodes": 636,
+      "heapUsedMiB": 142.27519989013672
+    },
+    {
+      "nodes": 50000,
+      "edges": 100000,
+      "mode": "galaxy",
+      "syntheticIndexAndControllerWallMs": 2742.231799988076,
+      "modeInitializationWallMs": 29007.626000005985,
+      "frameIntervalsMs": [
+        1.7000000178813934, 14.799999982118607, 16.400000005960464, 17.099999994039536, 15.5,
+        15.900000005960464, 16, 18.5, 15.400000005960464, 17.19999998807907, 17.099999994039536,
+        15.900000005960464
+      ],
+      "cpuDrawMs": 0.2,
+      "firstDrawMs": 32.9,
+      "contextMs": 28825.2,
+      "geometryMs": 37.1,
+      "drawnNodes": 50000,
+      "heapUsedMiB": 81.84316825866699
+    }
+  ]
+}

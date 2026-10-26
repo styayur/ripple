@@ -1,5 +1,6 @@
 export interface GraphNode {
   readonly id: string;
+  readonly path?: string;
   readonly title: string;
   readonly aliases: readonly string[];
   readonly tags: readonly string[];
@@ -12,6 +13,9 @@ export interface GraphNode {
 export interface GraphEdge {
   readonly source: string;
   readonly target: string;
+  readonly kind?: 'link';
+  readonly weight?: number;
+  readonly directed?: boolean;
 }
 
 export interface GraphData {
@@ -54,6 +58,7 @@ export function normalizeGraph(raw: unknown): { graph: GraphData; warnings: stri
     }
     nodes.set(value.id, {
       id: value.id,
+      path: typeof value.path === 'string' ? value.path : value.id,
       title: typeof value.title === 'string' ? value.title : value.id,
       aliases: strings(value.aliases),
       tags: strings(value.tags),
@@ -75,8 +80,17 @@ export function normalizeGraph(raw: unknown): { graph: GraphData; warnings: stri
       warnings.push('Skipped invalid edge');
       continue;
     }
-    const pair = [value.source, value.target].sort();
-    edges.set(JSON.stringify(pair), { source: pair[0]!, target: pair[1]! });
+    const pair =
+      value.directed === true ? [value.source, value.target] : [value.source, value.target].sort();
+    const key = JSON.stringify([value.directed === true, ...pair]);
+    edges.set(key, {
+      source: pair[0]!,
+      target: pair[1]!,
+      ...(value.directed === true ? { directed: true, kind: 'link' } : {}),
+      ...(typeof value.weight === 'number' && Number.isFinite(value.weight) && value.weight > 0
+        ? { weight: value.weight }
+        : {}),
+    });
   }
   return { graph: { nodes: [...nodes.values()], edges: [...edges.values()] }, warnings };
 }

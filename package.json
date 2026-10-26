@@ -1,9 +1,9 @@
 {
   "name": "ripple-graph-filter",
-  "version": "0.1.0-alpha.1",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "Explainable, non-destructive local graph filtering for Obsidian.",
+  "description": "A local-first graph workspace for Obsidian with shared relevance filtering and four graph views.",
   "license": "MPL-2.0",
   "repository": {
     "type": "git",
@@ -21,6 +21,9 @@
     "typecheck": "tsc --noEmit",
     "test": "tsx --test tests/*.test.ts",
     "test:browser": "node scripts/browser-harness.mjs && python tests/browser/smoke.py",
+    "test:obsidian": "python scripts/obsidian-integration.py",
+    "bench:render": "node scripts/browser-harness.mjs && python scripts/render-benchmark.py",
+    "audit:engines": "node scripts/engine-audit.mjs",
     "bench": "tsx scripts/benchmark.ts",
     "audit:licenses": "node scripts/licenses.mjs",
     "audit:upstream": "node scripts/audit-upstream.mjs",
@@ -28,7 +31,9 @@
     "check": "npm run format:check && npm run lint && npm run typecheck && npm test && npm run build && npm run check:artifacts && npm run audit:licenses && npm audit --audit-level=low"
   },
   "devDependencies": {
+    "@types/d3-force": "3.0.10",
     "@types/node": "26.6.5",
+    "@types/three": "0.186.0",
     "esbuild": "0.28.2",
     "eslint": "10.13.0",
     "obsidian": "1.14.4",
@@ -37,5 +42,9 @@
     "tsx": "4.23.15",
     "typescript": "6.0.3",
     "typescript-eslint": "8.72.0"
+  },
+  "dependencies": {
+    "d3-force": "3.0.0",
+    "three": "0.186.1"
   }
 }
