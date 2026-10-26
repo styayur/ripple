@@ -1,0 +1,97 @@
+.ripple-view {
+  padding: var(--size-4-4);
+  color: var(--text-normal);
+}
+.ripple-view h2 {
+  margin: 0;
+  font-size: 1.65em;
+  font-weight: 650;
+}
+.ripple-view .ripple-intro {
+  color: var(--text-muted);
+  margin-top: var(--size-4-1);
+}
+.ripple-view .ripple-scope {
+  border-left: 3px solid var(--interactive-accent);
+  padding-left: var(--size-4-2);
+  font-size: var(--font-ui-small);
+}
+.ripple-view .ripple-controls .setting-item {
+  flex-wrap: wrap;
+  gap: var(--size-4-2);
+}
+.ripple-view .ripple-controls .setting-item-info {
+  min-width: 140px;
+}
+.ripple-view .ripple-controls input[type='text'] {
+  width: 100%;
+}
+.ripple-view .ripple-controls .setting-item-control {
+  flex: 1;
+  min-width: 140px;
+}
+.ripple-view .ripple-controls select {
+  max-width: 100%;
+}
+.ripple-view .ripple-controls input[type='range'] {
+  width: 100%;
+}
+.ripple-view .ripple-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--size-4-2);
+  margin-block: var(--size-4-3);
+}
+.ripple-view .ripple-adapters {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+}
+.ripple-view .ripple-adapters details {
+  padding-block: var(--size-2-1);
+}
+.ripple-view .ripple-count {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.ripple-view .ripple-error {
+  color: var(--text-error);
+  overflow-wrap: anywhere;
+}
+.ripple-view .ripple-error:empty {
+  display: none;
+}
+.ripple-view .ripple-plot {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  background: var(--background-secondary);
+}
+.ripple-view .ripple-plot line {
+  stroke: var(--text-faint);
+  stroke-opacity: 0.4;
+}
+.ripple-view .ripple-plot circle {
+  fill: var(--interactive-accent);
+  stroke: var(--background-primary);
+  stroke-width: 1;
+}
+.ripple-view .ripple-limit,
+.ripple-view .ripple-path,
+.ripple-view .ripple-reason {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+.ripple-view .ripple-result {
+  border-bottom: 1px solid var(--background-modifier-border);
+  padding-block: var(--size-4-2);
+}
+.ripple-view summary {
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+.ripple-view :focus-visible {
+  outline: 2px solid var(--interactive-accent);
+  outline-offset: 2px;
+}

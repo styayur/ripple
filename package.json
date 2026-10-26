@@ -1,0 +1,41 @@
+{
+  "name": "ripple-graph-filter",
+  "version": "0.1.0-alpha.1",
+  "private": true,
+  "type": "module",
+  "description": "Explainable, non-destructive local graph filtering for Obsidian.",
+  "license": "MPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/styayur/ripple.git"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node esbuild.config.mjs --watch",
+    "build": "node esbuild.config.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint . --max-warnings 0",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "test:browser": "node scripts/browser-harness.mjs && python tests/browser/smoke.py",
+    "bench": "tsx scripts/benchmark.ts",
+    "audit:licenses": "node scripts/licenses.mjs",
+    "audit:upstream": "node scripts/audit-upstream.mjs",
+    "check:artifacts": "node scripts/check-artifacts.mjs",
+    "check": "npm run format:check && npm run lint && npm run typecheck && npm test && npm run build && npm run check:artifacts && npm run audit:licenses && npm audit --audit-level=low"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.5",
+    "esbuild": "0.28.2",
+    "eslint": "10.13.0",
+    "obsidian": "1.14.4",
+    "prettier": "3.9.10",
+    "spdx-expression-parse": "5.0.0",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.0"
+  }
+}
