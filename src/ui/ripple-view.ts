@@ -31,6 +31,8 @@ export class RippleView extends ItemView {
   private controller: AbortController | undefined;
   private closed = false;
   private loading = false;
+  private stale = false;
+  private indexNotices: readonly string[] = [];
 
   constructor(leaf: WorkspaceLeaf) {
     super(leaf);
@@ -102,7 +104,9 @@ export class RippleView extends ItemView {
       this.request++;
       this.controller?.abort();
       this.loading = false;
+      this.stale = true;
       this.controls.refresh.disabled = false;
+      if (!this.session) this.countEl.setText('Snapshot invalidated');
       this.errorEl.setText('Vault changed. Refresh graph to update the snapshot.');
     };
     this.registerEvent(this.app.metadataCache.on('changed', invalidate));
@@ -185,11 +189,9 @@ export class RippleView extends ItemView {
       if (this.closed || request !== this.request) return;
       this.session = new StateManager(graph);
       this.loading = false;
+      this.stale = false;
+      this.indexNotices = warnings;
       this.render();
-      if (warnings.length)
-        this.errorEl.setText(
-          `${warnings.length} index notice(s): ${warnings.slice(0, 3).join(' ')}`,
-        );
     } catch (error) {
       if (this.closed || request !== this.request) return;
       this.countEl.setText('Graph unavailable');
@@ -213,7 +215,11 @@ export class RippleView extends ItemView {
         this.controls.query.value,
         Number(this.controls.slider.value),
       );
-      this.errorEl.empty();
+      const notices = [
+        ...(this.stale ? ['Vault changed. Refresh graph to update the snapshot.'] : []),
+        ...this.indexNotices.slice(0, 3),
+      ];
+      this.errorEl.setText(notices.join(' '));
       this.countEl.setText(
         `${result.visibleIds.size} / ${result.total} visible nodes${result.emptyQuery ? ' · Original graph' : ''}`,
       );

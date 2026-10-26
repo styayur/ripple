@@ -11,6 +11,7 @@ const options = {
   target: 'es2022',
   sourcemap: false,
   treeShaking: true,
+  minify: !process.argv.includes('--watch'),
   logLevel: 'info',
   banner: { js: '/* Ripple Graph Filter | MPL-2.0 | https://github.com/styayur/ripple */' },
   metafile: true,
