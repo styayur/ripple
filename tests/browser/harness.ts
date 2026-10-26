@@ -1,93 +1,120 @@
 import { installDomHelpers, TFile } from './obsidian-mock';
-import { RippleView } from '../../src/ui/ripple-view';
-import type { WorkspaceLeaf } from 'obsidian';
+import { RippleWorkspaceView } from '../../src/ui/workspace-view';
+import { WorkspaceController } from '../../src/workspace/workspace-controller';
+import { VaultIndex } from '../../src/services/vault-index';
+import type { App, Component, WorkspaceLeaf } from 'obsidian';
 
 installDomHelpers();
-const files = [
-  new TFile('Ocean.md', 'Ocean'),
-  new TFile('Oceanography.md', 'Oceanography'),
-  new TFile('Cooking.md', 'Cooking'),
-];
-const calls: { method: string; readOnly: boolean }[] = [];
-const handlers = new Map<string, Set<() => void>>();
-const on = (name: string, callback: () => void) => {
-  const listeners = handlers.get(name) ?? new Set();
-  handlers.set(name, listeners);
-  listeners.add(callback);
-  return () => listeners.delete(callback);
+let files: TFile[] = [];
+for (const group of ['Graph', 'Systems', 'Testing', 'Notes']) {
+  for (let i = 0; i < 8; i++)
+    files.push(
+      new TFile(
+        `${group}/${i === 0 ? group : `${group} ${i}`}.md`,
+        i === 0 ? group : `${group} ${i}`,
+      ),
+    );
+}
+const handlers = new Map<string, Set<(...args: unknown[]) => void>>();
+const on = (name: string, callback: (...args: unknown[]) => void) => {
+  const values = handlers.get(name) ?? new Set();
+  handlers.set(name, values);
+  values.add(callback);
+  return () => values.delete(callback);
 };
-const reference = { viewId: 'fixture-graph', contextToken: 'fixture-token' };
-const api = {
-  async runTool(method: string, args: Record<string, unknown>, readOnly: boolean) {
-    calls.push({ method, readOnly });
-    if (method === 'listViews')
-      return {
-        apiVersion: 1,
-        pluginVersion: '0.8.6',
-        views: [{ ...reference, layout: 'Fixture graph' }],
-      };
-    if (method === 'getState') return reference;
-    if (method === 'getGraph')
-      return {
-        ...reference,
-        kind: args.kind,
-        items:
-          args.kind === 'nodes'
-            ? files.map((file, i) => ({
-                id: file.path,
-                label: file.basename,
-                x: i * 10,
-                y: i * 20,
-                pinned: i === 0,
-                visible: true,
-                type: 'note',
-              }))
-            : [{ source: 'Ocean.md', target: 'Oceanography.md', visible: true }],
-        nextOffset: null,
-      };
-    throw new Error('Unexpected mutation');
-  },
-};
-const manifests = {
-  graphfrontier: { version: '0.8.6' },
-  'graph-insight': { version: '0.10.1' },
-  'smart-cluster-graph': { version: '1.2.0' },
-  'galaxy-view': { version: '0.6.1' },
-};
+let reads = 0;
+let lastOpened: string | undefined;
 const app = {
   vault: {
-    getMarkdownFiles: () => files,
-    cachedRead: async () => 'The deep blue ocean.',
+    getMarkdownFiles: () => [...files],
+    cachedRead: async () => {
+      reads++;
+      return 'The deep blue ocean.';
+    },
     getFileByPath: (id: string) => files.find((file) => file.path === id),
     on,
   },
   metadataCache: {
-    getFileCache: () => ({ tags: [{ tag: '#water' }], frontmatter: { aliases: ['Sea'] } }),
-    resolvedLinks: { 'Ocean.md': { 'Oceanography.md': 1 } },
+    getFileCache: (file: TFile) => ({
+      tags: [{ tag: `#${file.path.split('/')[0]!.toLowerCase()}` }],
+      frontmatter: { aliases: ['Reference'] },
+    }),
+    get resolvedLinks() {
+      return Object.fromEntries(
+        files.map((file, i) => [
+          file.path,
+          {
+            [files[Math.floor(i / 8) * 8 + ((i + 1) % 8)]!.path]: 1,
+            [files[Math.floor(i / 8) * 8 + ((i + 2) % 8)]!.path]: 1,
+          },
+        ]),
+      );
+    },
     on,
   },
-  workspace: { getLeavesOfType: () => [{}], openLinkText: async () => {} },
-  plugins: { manifests, getPlugin: (id: string) => (id === 'graphfrontier' ? { api } : {}) },
+  workspace: {
+    on,
+    getLeaf: () => ({
+      openFile: async (file: TFile) => {
+        lastOpened = file.path;
+      },
+    }),
+  },
 };
-let view: RippleView;
+const controller = new WorkspaceController();
+const index = new VaultIndex(app as unknown as App);
+const subscriptions: (() => void)[] = [];
+index.start({
+  registerEvent: (cleanup: () => void) => subscriptions.push(cleanup),
+  register: (cleanup: () => void) => subscriptions.push(cleanup),
+} as unknown as Component);
+subscriptions.push(index.subscribe((snapshot) => controller.update(snapshot)));
+let view: RippleWorkspaceView;
 async function mount() {
-  view = new RippleView({
-    app,
-    contentEl: document.getElementById('app')!,
-  } as unknown as WorkspaceLeaf);
+  view = new RippleWorkspaceView(
+    { app, contentEl: document.getElementById('app')! } as unknown as WorkspaceLeaf,
+    controller,
+    index,
+  );
   await view.onOpen();
 }
 const fixture = {
   app,
-  calls,
+  controller,
+  index,
   handlers,
+  get reads() {
+    return reads;
+  },
+  get lastOpened() {
+    return lastOpened;
+  },
   close: async () => {
     await view.onClose();
     (view as unknown as { unload(): void }).unload();
   },
   mount,
-  invalidate: () => {
-    for (const callback of handlers.get('changed') ?? []) callback();
+  shutdown: async () => {
+    await fixture.close();
+    for (const cleanup of subscriptions) cleanup();
+    controller.dispose();
+  },
+  empty: async () => {
+    files = [];
+    await index.refresh(true);
+  },
+  loadSynthetic: async (count: number) => {
+    files = Array.from(
+      { length: count },
+      (_, i) => new TFile(`Synthetic/${i}.md`, i % 20 === 0 ? 'Graph' : `Note ${i}`),
+    );
+    await index.refresh(true);
+  },
+  modify: async () => {
+    const file = files[0]!;
+    file.stat.mtime++;
+    for (const callback of handlers.get('changed') ?? []) callback(file);
+    await index.refresh();
   },
 };
 Object.assign(window, { rippleFixture: fixture });

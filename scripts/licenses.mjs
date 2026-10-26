@@ -108,5 +108,5 @@ console.log(
   `Reviewed ${entries.length} locked packages: ${entries.filter((entry) => entry.installed).length} installed license texts checked, ${entries.filter((entry) => !entry.installed).length} other-platform optional binaries checked against locked npm license/provenance.`,
 );
 console.log(
-  'No third-party code is bundled into main.js. See THIRD_PARTY_NOTICES.md for attribution and scope.',
+  'Runtime Three.js and d3-force are bundled with complete license texts in main.js. See THIRD_PARTY_NOTICES.md.',
 );

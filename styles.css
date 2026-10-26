@@ -95,3 +95,139 @@
   outline: 2px solid var(--interactive-accent);
   outline-offset: 2px;
 }
+
+.ripple-workspace {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  padding: var(--size-4-3);
+  gap: var(--size-4-2);
+  color: var(--text-normal);
+}
+.ripple-workspace .ripple-toolbar,
+.ripple-workspace .ripple-filterbar,
+.ripple-workspace .ripple-statusbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--size-4-2);
+}
+.ripple-workspace .ripple-wordmark {
+  font-weight: 650;
+  font-size: 1.2em;
+  margin-right: var(--size-4-2);
+}
+.ripple-workspace .ripple-query-label {
+  flex: 1 1 300px;
+  display: flex;
+  align-items: center;
+  gap: var(--size-4-2);
+}
+.ripple-workspace .ripple-query-label input {
+  flex: 1;
+  min-width: 100px;
+}
+.ripple-workspace .ripple-range-label {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4-2);
+}
+.ripple-workspace .ripple-range-label output {
+  min-width: 4ch;
+  font-variant-numeric: tabular-nums;
+}
+.ripple-workspace .ripple-statusbar {
+  font-size: var(--font-ui-small);
+  justify-content: space-between;
+}
+.ripple-workspace .ripple-index-status,
+.ripple-workspace .ripple-navigation-hint,
+.ripple-workspace .ripple-node-path {
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  overflow-wrap: anywhere;
+}
+.ripple-workspace .ripple-workspace-body {
+  display: flex;
+  flex: 1;
+  min-height: 200px;
+  gap: var(--size-4-2);
+}
+.ripple-workspace .ripple-stage {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  min-height: 200px;
+  overflow: hidden;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+}
+.ripple-workspace .ripple-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  touch-action: none;
+}
+.ripple-workspace .ripple-inspector {
+  flex: 0 0 110px;
+  overflow: auto;
+  font-size: var(--font-ui-small);
+}
+.ripple-workspace .ripple-inspector[open] {
+  flex-basis: 250px;
+}
+.ripple-workspace .ripple-inspector button {
+  display: block;
+  margin-block: var(--size-4-2);
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.ripple-workspace .ripple-inspector select {
+  max-width: 100%;
+}
+.ripple-workspace .ripple-inspector label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4-2);
+}
+.ripple-workspace .ripple-node-title {
+  font-weight: 600;
+}
+.ripple-workspace .ripple-error {
+  color: var(--text-error);
+  overflow-wrap: anywhere;
+}
+.ripple-workspace .ripple-error:empty {
+  display: none;
+}
+.ripple-workspace .ripple-render-error {
+  padding: var(--size-4-4);
+}
+.ripple-workspace .ripple-advanced {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-muted);
+}
+.ripple-workspace .ripple-navigation-hint {
+  margin: 0;
+}
+.ripple-workspace :focus-visible {
+  outline: 2px solid var(--interactive-accent);
+  outline-offset: 2px;
+}
+@media (max-width: 700px) {
+  .ripple-workspace .ripple-workspace-body {
+    flex-direction: column;
+  }
+  .ripple-workspace .ripple-stage {
+    min-height: 300px;
+  }
+  .ripple-workspace .ripple-inspector,
+  .ripple-workspace .ripple-inspector[open] {
+    flex: 0 0 auto;
+    max-height: 250px;
+  }
+}
