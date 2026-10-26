@@ -1,137 +1,161 @@
-# Ripple Graph Filter
+<img src="assets/ripple.svg" alt="Ripple" width="56" height="56">
 
-Ripple filters a local graph with explainable keyword relevance and a 0–100%
-threshold. Raise the threshold to keep fewer nodes; lower it to recover context.
-Clear the query to restore the original graph. No note content or links are changed.
+# Ripple
 
-**0.1.0-alpha.1 is a manual-install GitHub prerelease.** The standalone Ripple
-graph works independently of other graph plugins. External graph filtering is
-not available in this release. GraphFrontier has a read-only snapshot adapter;
-the other three targets have detection and explicit unsupported states.
-No adapter has been verified inside a real Obsidian session.
+A local-first graph workspace for Obsidian, with shared relevance filtering and multiple graph views.
+
+[![CI](https://github.com/styayur/ripple/actions/workflows/ci.yml/badge.svg)](https://github.com/styayur/ripple/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/styayur/ripple)](https://github.com/styayur/ripple/releases)
+[![MPL-2.0](https://img.shields.io/badge/license-MPL--2.0-blue)](LICENSE)
+
+![Ripple workspace running in real Obsidian 1.14.5](docs/screenshots/workspace-dark.png)
+
+The screenshot is from the production build in a real Windows Obsidian session
+with a newly created synthetic vault. It is not a mock or an image-generated UI.
+
+## What it does
+
+- Opens a full workspace tab with pan, zoom, fit, node selection and note opening.
+- Shares one Vault index, relevance score cache, filter and selection across four modes.
+- Explains title, alias, tag, path, optional body, distance and degree contributions.
+- Preserves independent cameras and layouts while switching modes.
+- Updates changed metadata and links incrementally; slider input never rereads notes.
+- Keeps note content, frontmatter, links and paths unchanged.
+
+No other graph plugin is required. The four reference projects informed the
+architecture; Ripple does not embed four plugin lifecycles or control their views.
+
+## View modes
+
+| Mode     | Implemented behavior                                                                      | Limits                                                                     |
+| -------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Frontier | 2D force layout in a worker; node drag, pin/unpin, camera controls                        | Active physics moves unpinned nodes; large layouts can take time to settle |
+| Dense    | Batched Canvas points, static grid, viewport culling and label/edge LOD                   | Edges hidden below 0.3×; at most 30,000 drawn links and 120 labels         |
+| Cluster  | Folder-seeded label propagation, colored hulls, cross-community links and group selection | Heuristic grouping, not Louvain; at most 200 drawn hulls                   |
+| Galaxy   | Actual 3D points/lines, perspective camera, orbit/pan/zoom and ray picking                | Requires WebGL 2; deterministic xyz layout, not a 3D force solver          |
+
+All four were exercised in **real Obsidian 1.14.5 on Windows 11** using a
+32-note isolated vault. Browser tests also exercise actual Canvas, WebGL and
+Workers with a mocked host. Synthetic 50,000-node measurements are separate
+from live compatibility evidence. See [validation](docs/VALIDATION.md).
+
+## Relevance filtering
+
+Enter words, quoted phrases or field terms: `title:Graph`, `alias:Reference`,
+`tag:systems`, `path:Research`, `content:cache`, `Graph -path:Archive`.
+Body matching requires **Index options → Include note text**. Queries are
+keyword ranking, not AI or semantic understanding.
+
+For a fixed graph and query, a node is eligible iff its score is at least the
+threshold and no exclusion matches. Higher thresholds cannot add eligible
+nodes; lower thresholds cannot remove them. Terms contribute to an average,
+not Obsidian's Boolean search syntax. 0% keeps zero-score non-excluded nodes.
+100% retains complete title/alias matches. Empty queries ignore the threshold
+and restore all candidates. **Clear filters** restores the full graph.
+
+Scoring is 85% lexical matching, 10% proximity and 5% normalized degree, with
+the documented exact-match override. Expand **Node details** for the winning
+field per term and score components. No bridge rule silently bypasses your
+threshold. [Full scoring contract](docs/SCORING.md).
 
 ## Install and use
 
-Requires desktop Obsidian **1.14.5 or newer**. This conservative minimum follows
-the stable version at audit time; mobile and older versions are untested.
+Requires desktop Obsidian **1.14.5+**. Only Windows 11 / 1.14.5 has real host
+verification; other desktop versions/platforms and mobile are **NOT TESTED**.
 
-1. Download `main.js`, `manifest.json`, and `styles.css` from the
-   [alpha release](https://github.com/styayur/ripple/releases/tag/0.1.0-alpha.1).
-2. Put all three in `<vault>/<configDir>/plugins/ripple-graph-filter/`.
-   The default config directory is `.obsidian`; use your actual configured one.
-3. Reload Obsidian and enable **Ripple Graph Filter** in Community plugins.
-4. Run **Ripple Graph Filter: Open graph filter** from the command palette,
-   or click the waves ribbon icon.
-5. Use **Ripple standalone graph**, enter a query, and adjust the threshold.
-   Expand a result to inspect its score and open the note. **Clear and restore**
-   restores all original candidates. **Refresh graph** takes a new snapshot.
+1. Download `main.js`, `manifest.json` and `styles.css` from
+   [Release 0.2.0](https://github.com/styayur/ripple/releases/tag/0.2.0).
+2. Put the three files into `<vault>/<configDir>/plugins/ripple-graph-filter/`.
+   Use your actual configuration directory; the default is `.obsidian`.
+3. Reload and enable **Ripple Graph Workspace** in Community plugins.
+4. Run **Ripple Graph Workspace: Open graph workspace** or click the waves icon.
 
-The standalone graph uses Markdown notes and resolved links from official
-Obsidian metadata APIs. Title, aliases, tags, paths and primitive frontmatter
-values are indexed by default. **Include note text** opts into local body reads:
-at most 32,768 characters per note and 8 million total, in path order. Larger
-bodies are truncated with a notice. This alpha limits indexing to 50,000 notes.
-Unresolved links and attachments are not standalone candidates.
+Use the toolbar to choose modes and control the camera. Click a node to select
+it and open its note beside the graph; Ctrl-click selects without opening.
+Frontier nodes can be dragged to pin them. **Node details** provides pin,
+community and neighbor actions, plus a keyboard-accessible node list. Galaxy
+uses left-drag to orbit, right-drag to pan and the wheel to zoom.
 
-The diagram draws the first 250 candidates and at most 600 links. The result
-list shows the first 100 visible matches. Counts and scoring include the whole
-candidate graph. Coordinates are deterministic and stay fixed while filtering.
-This preview has no force-layout simulation or automatic bridge retention.
+The plugin ID and original command/view identifiers are unchanged from
+0.1.0-alpha.1. The old sidebar preview upgrades to a workspace; move an existing
+leaf into a main tab if desired. There are no saved 0.1 settings to migrate.
+The community directory has not been submitted to or approved this plugin.
 
-## Queries and threshold
+## Privacy and state
 
-Examples: `ocean`, `"deep sea"`, `title:Ocean`, `alias:Sea`, `tag:water`,
-`path:Research`, `content:depth`, or `ocean -path:Archive`.
-Body queries need **Include note text** in standalone mode.
+Ripple initiates no network requests and has no accounts, telemetry, advertising,
+remote model services or remote code loading. Runtime libraries and the force
+worker are bundled into `main.js`; there are no CDN assets or extra chunks.
+The Obsidian application's own update/network behavior is separate from Ripple.
 
-Terms contribute to a ranked average; this is not Obsidian's Boolean search
-syntax. `-` excludes a matching term even at 0%. An empty query ignores the
-threshold and restores original visibility; a negative-only query keeps all
-non-excluded candidates with score 1. Exact title/alias matches can reach 100%.
-0% retains all non-excluded candidates, including zero-score nodes.
+Metadata comes from the official Vault/MetadataCache APIs. Only resolved
+Markdown links become graph edges. Body indexing is off by default; enabling
+it reads locally up to 32,768 characters per note and 8 million characters in
+total. Indexes, body text, queries and selection stay in memory. Mode, cameras
+and pinned Frontier coordinates use Obsidian workspace serialization. No
+Markdown, frontmatter, tags, links, file paths, Canvas files or other plugins'
+settings are written by Ripple.
 
-Scores combine deterministic lexical matching (85%), proximity to strong
-lexical matches (10%) and normalized degree (5%), with an explicit exact-match
-override. They are fixed for a query and graph, so increasing the threshold
-cannot grow the visible set. No bridge rule bypasses the threshold.
-See [the complete scoring rules](docs/SCORING.md).
-**Keyword ranking is not semantic understanding or AI.**
+## Architecture and source
 
-## Adapter compatibility
+One incremental index produces immutable revisioned snapshots. One controller
+owns scoring, visibility, analysis and selection; renderers consume that shared
+state. Three Canvas policies share interaction code; Galaxy uses Three.js.
+Only the active renderer owns resources. Switching modes terminates workers
+and disposes GPU buffers/controls, while preserving mode state.
 
-| Target              | Audited ID / version          | This release                                                                  | Real Obsidian verification |
-| ------------------- | ----------------------------- | ----------------------------------------------------------------------------- | -------------------------- |
-| GraphFrontier       | `graphfrontier` / 0.8.6       | Read visible snapshot into Ripple preview; external apply/restore unsupported | Not performed              |
-| Advanced Graph View | `graph-insight` / 0.10.1      | Detection only; no documented safe external API                               | Not performed              |
-| Smart Cluster Graph | `smart-cluster-graph` / 1.2.0 | Detection only; graph and visibility are private                              | Not performed              |
-| Galaxy View         | `galaxy-view` / 0.6.1         | Detection only; no documented stable controller API                           | Not performed              |
+See [architecture](docs/ARCHITECTURE.md), [upstream engine assessment](docs/UPSTREAM_ENGINE_AUDIT.md)
+and [legacy adapter boundaries](docs/ADAPTER_COMPATIBILITY.md). No source from
+the four reference plugins was copied. The directly used libraries are
+Three.js (MIT) and d3-force (ISC), with their own notices retained in the bundle.
 
-GraphFrontier snapshots require an open graph and its documented local
-`api.runTool`; no MCP server needs enabling. Choose a specific view if several
-are open. Its existing user filters define the snapshot candidates. Snapshot
-titles and links are used without reading note bodies or additional metadata.
-Its live graph remains unchanged when Ripple's slider moves. Read results are
-not transactional; refresh after external search, layout or graph changes.
-
-GraphFrontier's `setVisibleNodes` uses a shared subset saved with layouts, so
-Ripple refuses to borrow it without an ownership/restore contract. Other targets'
-private renderers are never accessed. Audited versions are pinned exactly;
-unrecognized versions are incompatible until reviewed. The optional Obsidian
-plugin discovery shim is guarded but uses an internal registry because no
-official discovery API exists; failure disables adapter discovery only.
-See [source evidence, licenses and proposed upstream APIs](docs/ADAPTER_COMPATIBILITY.md).
-GraphPro is outside scope.
-
-## Privacy and safety
-
-Ripple has no network calls, accounts, telemetry, advertising, model services,
-remote code loading, or runtime npm dependencies. Queries, indexes, filters and
-preview state live in memory and are discarded on close/disable. Notes are read
-through the official Vault API; no Markdown, frontmatter, tags, paths, links,
-other plugin files or settings are written. Metadata changes mark a snapshot
-stale and ask you to refresh. Disabling Ripple clears only its own temporary
-preview. A failed query preserves the last successful visibility.
-
-## Development and verification
+## Development and tests
 
 ```sh
 npm ci
 npm run check
 npm run bench
-```
-
-`check` runs formatting, ESLint, strict TypeScript, unit/Mock tests, production
-esbuild, asset/provenance checks, a locked dependency license audit, and
-`npm audit --audit-level=low`. `build` actually produces root `main.js` and the
-installable `dist/` assets. Generated `main.js` is excluded from Git.
-CI runs on Node 22, Linux and Windows and checks build repeatability.
-
-Browser checks run the actual view against an explicitly mocked SDK:
-
-```sh
 python -m pip install -r tests/browser/requirements.txt
 python -m playwright install chromium
 npm run test:browser
+npm run bench:render
 ```
 
-This is not a live Obsidian integration test. The optional pinned upstream
-contract check is `GRAPHFRONTIER_SOURCE=/path/to/checkout npm run audit:upstream`
-(use your shell's environment syntax). See [validation evidence](docs/VALIDATION.md)
-and [community preparation](docs/COMMUNITY_READINESS.md).
+`check` runs formatting, ESLint, strict TypeScript, unit tests, production
+esbuild, asset verification, dependency-license audit and known-vulnerability
+audit. CI covers Windows/Linux, browser interactions and build repeatability.
+Reports and build inputs are uploaded as CI artifacts. `main.js` is generated,
+not committed. The install assets are self-contained.
 
-## Known limits and contribution
+`npm run test:obsidian` runs the installed Windows desktop app with a **new**
+profile and synthetic vault under `reports/obsidian/`. It never deploys to an
+existing vault. It uses host debug APIs in the test harness only. It requires
+an installed Obsidian and Playwright; it is a local integration test, not a
+claim that hosted CI runs Obsidian. [Recorded scope](docs/VALIDATION.md).
 
-External write adapters and real Obsidian integration validation are blockers
-for a stable release. The alpha suffix follows this project's prerelease policy;
-Obsidian's current directory requires numeric `x.y.z`, so this alpha is not
-directory submission-ready. The name/ID were checked against the public
-directory snapshot, which is not a reservation or approval. No official
-submission has been made, and no affiliation with Obsidian is claimed.
+## Limits and roadmap
 
-Report reproducible issues at [GitHub Issues](https://github.com/styayur/ripple/issues),
-including app version, target plugin version, exact query and expected behavior.
-Use synthetic notes instead of private vault data. Contributions should include
-focused tests; adapter changes need pinned source evidence and a reversible,
-non-destructive public API. See [CONTRIBUTING.md](CONTRIBUTING.md).
+The current index limit is 50,000 Markdown notes. Unresolved targets,
+attachments and Canvas cards are not candidates. Node lookup lists the first
+200 visible notes; narrow the query to locate others. All counts and scoring
+use the full candidate graph. Renderer LOD affects drawn links/labels, never
+the shared eligible-node set. Galaxy draws at most 100,000 links, reduced to
+5,000 above 10,000 visible nodes. Very large software-WebGL context creation
+can be slow; synthetic timings include those stalls and are not FPS promises.
 
-Licensed under [MPL-2.0](LICENSE). See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Unpinned force positions restart after reload; cameras and pins are restored.
+There is no automatic bridge retention, 3D physics, crossing minimization,
+AI concept extraction or automatic link writing. Community quality depends on
+the graph/folder structure. Large real vaults, other GPUs, macOS/Linux host
+integration and mobile are **NOT TESTED**.
+
+Next work: broader real-vault/GPU validation, large-graph startup and LOD tuning,
+improved community algorithms, richer accessible navigation and optional saved
+layouts. Any new feature must preserve shared filter semantics and ownership.
+
+Report issues at [GitHub Issues](https://github.com/styayur/ripple/issues) with
+versions, mode, query, hardware and reproducible synthetic notes. Do not upload
+private vault contents. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+Ripple source is [MPL-2.0](LICENSE). Bundled libraries retain their original
+licenses and copyrights; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

@@ -1,5 +1,22 @@
 # Adapter compatibility audit
 
+## 0.2 workspace status
+
+The four 0.2 modes are Ripple-owned renderers, not adapters controlling installed
+plugins. No target plugin is required. Frontier (Canvas/force worker), Dense
+(Canvas grid/LOD), Cluster (Canvas community hulls) and Galaxy (actual Three.js
+WebGL) share the same graph/filter state and have real Windows Obsidian 1.14.5
+integration evidence scoped to a synthetic 32-note vault. See
+[ARCHITECTURE.md](ARCHITECTURE.md), [UPSTREAM_ENGINE_AUDIT.md](UPSTREAM_ENGINE_AUDIT.md)
+and [VALIDATION.md](VALIDATION.md). No source from the four plugins was copied.
+
+The older adapter modules are retained as regression-tested source, not bundled
+into the 0.2 entry point. Their external-write limitations below still apply.
+The following section is the **historical 0.1 external-adapter audit**, not a
+claim about 0.2 renderer support or live testing.
+
+## Historical 0.1 audit
+
 Audited 2026-10-26 against shallow source checkouts and current release metadata.
 Source inspection and mocked contracts are **not live Obsidian integration tests**.
 No third-party source is bundled. GraphPro is outside scope.

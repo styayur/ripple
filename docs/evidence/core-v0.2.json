@@ -1,0 +1,44 @@
+{
+  "runtime": "v26.7.0",
+  "platform": "win32/x64",
+  "timestamp": "2026-10-26T14:11:06.462Z",
+  "note": "Single synthetic run, no forced GC; heap delta is an observation, not peak memory or an Obsidian UI benchmark.",
+  "observations": [
+    {
+      "nodes": 1000,
+      "edges": 2969,
+      "normalizeMs": 5.790400000000005,
+      "scoreMs": 8.880700000000019,
+      "cached101ThresholdsMs": 2.0955999999999904,
+      "heapDeltaMiB": 9.407264709472656,
+      "checksum": 13943,
+      "analyzeMs": 21.006200000000007,
+      "seed3DMs": 1.5056999999999903,
+      "forceSetupAnd2TicksMs": 49.293199999999985
+    },
+    {
+      "nodes": 10000,
+      "edges": 29969,
+      "normalizeMs": 68.8827,
+      "scoreMs": 49.120299999999986,
+      "cached101ThresholdsMs": 20.040899999999965,
+      "heapDeltaMiB": 45.83654022216797,
+      "checksum": 139943,
+      "analyzeMs": 162.12520000000006,
+      "seed3DMs": 7.35329999999999,
+      "forceSetupAnd2TicksMs": 214.711
+    },
+    {
+      "nodes": 50000,
+      "edges": 149969,
+      "normalizeMs": 307.7587,
+      "scoreMs": 241.31650000000013,
+      "cached101ThresholdsMs": 162.97199999999998,
+      "heapDeltaMiB": 174.88825225830078,
+      "checksum": 699943,
+      "analyzeMs": 1039.6859,
+      "seed3DMs": 19.913100000000213,
+      "forceSetupAnd2TicksMs": 865.1453999999999
+    }
+  ]
+}

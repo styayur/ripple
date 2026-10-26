@@ -1,0 +1,18 @@
+{
+  "environment": "Chromium headless / SwiftShader + mocked Obsidian SDK; real Canvas, WebGL and Workers",
+  "checks": [
+    "Initial graph contains all candidates; empty query disables strictness slider",
+    "All four actual renderers receive identical IDs/query/threshold without body reads",
+    "Selection and inspector survive mode changes",
+    "Galaxy uses perspective WebGL geometry with real depth and orbit controls",
+    "Each mode retains an independent camera across switches",
+    "Selected node resolves to the corresponding note path (Mock host openFile)",
+    "Query failure is atomic and clear restores the complete graph",
+    "Every mode initializes and renders an empty visible graph",
+    "Opt-in body cache reuses unchanged notes and reads only a modified body",
+    "Dark theme and narrow workspace remain usable without page overflow",
+    "View remount, empty Vault and plugin disposal release events/canvas resources",
+    "WebGL initialization failure is explicit and switching to 2D recovers"
+  ],
+  "pageErrors": []
+}
