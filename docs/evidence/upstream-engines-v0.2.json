@@ -1,0 +1,299 @@
+[
+  {
+    "repository": "pikiby/GraphFrontier",
+    "sha": "72223f9a020aefc73e0ac13e7d4945c15e2b28d5",
+    "id": "graphfrontier",
+    "version": "0.8.6",
+    "license": "MIT",
+    "copyright": "Copyright (c) 2026 Boris Kazakov (pikiby)\r",
+    "dependencies": {
+      "@cfworker/json-schema": "4.1.1",
+      "@modelcontextprotocol/sdk": "1.32.1",
+      "zod": "4.6.7"
+    },
+    "devDependencies": {
+      "@eslint/js": "^9.21.0",
+      "acorn": "8.16.0",
+      "esbuild": "^0.24.2",
+      "eslint": "^9.21.0",
+      "eslint-scope": "8.4.0",
+      "globals": "^15.14.0",
+      "prettier": "^3.5.2"
+    },
+    "declaredLockLicenses": {
+      "MIT": 170,
+      "Apache-2.0": 11,
+      "Python-2.0": 1,
+      "BSD-2-Clause": 7,
+      "BSD-3-Clause": 3,
+      "ISC": 10
+    },
+    "evidence": [
+      {
+        "path": "LICENSE",
+        "sha256": "5888b6994242c7c9d446726748c13d4e3abc8e2a2224ecf05ef67d0b7046142f"
+      },
+      {
+        "path": "manifest.json",
+        "sha256": "1dee747f9794c4ffe2055a0e2b37be0980c8ec2fb9a7e6f3b5361ec537732eb3"
+      },
+      {
+        "path": "package.json",
+        "sha256": "cb9360adecdda285f791404def3433525683e3450a387ba5a53372f337066540"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "6b378751ca9a6d4b54dfd88bc21a7576ff707712cf53dd531027f742b7584a97"
+      },
+      {
+        "path": "esbuild.config.mjs",
+        "sha256": "29adecfb0bec12752faf1d0f89d7be28033a4032c0e012aa1714ef4cc76fbea7"
+      },
+      {
+        "path": "src/physics.js",
+        "sha256": "30949e6cc0560f7d494d96baf8aa74b1dd577aa30cf2f3e853b7df1636a95834"
+      },
+      {
+        "path": "src/render.js",
+        "sha256": "99b7c4d34ee2071c3c967bf7cfcee9d1888d227e19f3cc37edce81796eeed6ac"
+      },
+      {
+        "path": "src/view.js",
+        "sha256": "262c4bb6baea6dbcaa63c16f2c12264e4b179538021b5f54efca3117b16fc656"
+      },
+      {
+        "path": "src/api.js",
+        "sha256": "265b0459381057b032c485d84cdc2b5e9f00f965f9543c02f29e7ab333163c49"
+      }
+    ],
+    "copiedIntoRipple": []
+  },
+  {
+    "repository": "n23eos/advanced_graph_view",
+    "sha": "17e3eb1fd0e64d4d13d9a130c4bd77b2f287b48d",
+    "id": "graph-insight",
+    "version": "0.10.1",
+    "license": "MIT",
+    "copyright": "Copyright (c) 2026 n23eos\r",
+    "dependencies": {
+      "d3-force": "^3.0.0",
+      "d3-force-3d": "^3.0.6",
+      "graphology": "^0.26.0",
+      "graphology-communities-louvain": "^2.0.2",
+      "graphology-metrics": "^2.4.0",
+      "pixi.js": "^8.19.0"
+    },
+    "devDependencies": {
+      "@types/d3-force": "^3.0.10",
+      "@typescript-eslint/eslint-plugin": "^8.64.0",
+      "@typescript-eslint/parser": "^8.64.0",
+      "esbuild": "^0.28.1",
+      "eslint": "^10.7.0",
+      "eslint-plugin-obsidianmd": "^0.4.1",
+      "jsdom": "^30.0.1",
+      "obsidian": "^1.13.1",
+      "tslib": "^2.8.1",
+      "typescript": "^6.0.3",
+      "vitest": "^4.1.10"
+    },
+    "declaredLockLicenses": {
+      "MIT": 398,
+      "MIT-0": 2,
+      "Apache-2.0": 34,
+      "BSD-2-Clause": 12,
+      "ISC": 22,
+      "BSD-3-Clause": 6,
+      "Python-2.0": 1,
+      "MPL-2.0": 13,
+      "BlueOak-1.0.0": 2,
+      "CC0-1.0": 1,
+      "0BSD": 1
+    },
+    "evidence": [
+      {
+        "path": "LICENSE",
+        "sha256": "9b1085478dd6a8947f27598b6f6af8916713ad154b54e085a7f65d5b043a6e4f"
+      },
+      {
+        "path": "manifest.json",
+        "sha256": "3fe39562c2a557280a9cab885c250e7c4f60fea56466757b977e155b5eca4efa"
+      },
+      {
+        "path": "package.json",
+        "sha256": "dbc23bd555e501a2fcb51d310440a5987054f8b0ab4222f1badfa7dcfa182918"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "f8d7fe568f73737d4723fef46de9dcc6bb820411e60d7cddb9653c51b73dac0d"
+      },
+      {
+        "path": "esbuild.config.mjs",
+        "sha256": "63f67c755203e1a1fa887ce029b59953f7c94b048255525942e933e846237d21"
+      },
+      {
+        "path": "src/workers/layoutEngine.ts",
+        "sha256": "64908cdaff16bb708556a6bd856c8ef22206456263ed0aca1da4584865853259"
+      },
+      {
+        "path": "src/data/GraphStore.ts",
+        "sha256": "76351f65a0e3e73576ac56dac73a730cadfdf31be8fd09893ff119430685a2c0"
+      },
+      {
+        "path": "src/render/GraphRenderer.ts",
+        "sha256": "193d31935a208028dee7129d08e9013965f399f43db90721bae63a66fd24bce4"
+      }
+    ],
+    "copiedIntoRipple": []
+  },
+  {
+    "repository": "comedianhhh/obsidian-smart-cluster-graph",
+    "sha": "6574861fca6e0b1f2780db450dca26ba6331ae67",
+    "id": "smart-cluster-graph",
+    "version": "1.2.0",
+    "license": "MIT",
+    "copyright": "Copyright (c) 2026 comedianhhh\r",
+    "dependencies": {
+      "d3-force": "^3.0.0",
+      "d3-polygon": "^3.0.1",
+      "d3-shape": "^3.2.0",
+      "force-graph": "^1.43.5",
+      "tinycolor2": "^1.6.0"
+    },
+    "devDependencies": {
+      "@types/d3-force": "^3.0.10",
+      "@types/d3-polygon": "^3.0.2",
+      "@types/d3-shape": "^3.1.7",
+      "@types/node": "^20.11.0",
+      "@types/tinycolor2": "^1.4.6",
+      "@typescript-eslint/eslint-plugin": "^6.19.0",
+      "@typescript-eslint/parser": "^6.19.0",
+      "esbuild": "^0.19.11",
+      "obsidian": "latest",
+      "tslib": "^2.6.2",
+      "typescript": "^5.3.3"
+    },
+    "declaredLockLicenses": {
+      "MIT": 156,
+      "ISC": 40,
+      "Apache-2.0": 5,
+      "BSD-3-Clause": 3,
+      "BSD-2-Clause": 8,
+      "Python-2.0": 1,
+      "0BSD": 1,
+      "(MIT OR CC0-1.0)": 1
+    },
+    "evidence": [
+      {
+        "path": "LICENSE",
+        "sha256": "0dfeec833c8dcab6e1b2bfeb98cb3c49f5bd11965eec101bd82bc1b531939b9b"
+      },
+      {
+        "path": "manifest.json",
+        "sha256": "1a1a77917d456094681dff681f5848f5851130884bf0bced768ecc7225ddf655"
+      },
+      {
+        "path": "package.json",
+        "sha256": "0dab01936fa5fed26fb7ecee33996765aa8e28cd4f45d32099365174aa1bbd5c"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "454da7e2182a810368d921536885d9ecb9e29306ac874cb27157fe39d414492a"
+      },
+      {
+        "path": "esbuild.config.mjs",
+        "sha256": "ac9a18a33a1b0a89f09c800e34a3d1cb6c7dba57f23f655a4334b3b8ff8af190"
+      },
+      {
+        "path": "src/engine/communityDetector.ts",
+        "sha256": "13659128de733e053df7db267e0704a072972beea355fdd606d4a1f52846c220"
+      },
+      {
+        "path": "src/views/hullRenderer.ts",
+        "sha256": "3206765f42f7a6749f6f54ed9e17e06e73d4b4715188f466abe1382949dddad5"
+      },
+      {
+        "path": "src/views/smartGraphView.ts",
+        "sha256": "8c33517ba8f8655c231474512feb6f1c57119054c006ecd8d7f9997c3bb7ea11"
+      }
+    ],
+    "copiedIntoRipple": []
+  },
+  {
+    "repository": "Longwind1984/galaxy-view",
+    "sha": "b49b60cb04687783153f24ff7f9b0a0af59334af",
+    "id": "galaxy-view",
+    "version": "0.6.1",
+    "license": "MIT",
+    "copyright": "Copyright (c) 2026 Rick\r",
+    "dependencies": {
+      "3d-force-graph": "1.80.0",
+      "d3-force-3d": "3.0.6",
+      "three": "0.184.0",
+      "three-spritetext": "1.10.0"
+    },
+    "devDependencies": {
+      "@eslint/js": "^9.39.4",
+      "@types/node": "^22.15.17",
+      "@types/three": "^0.184.0",
+      "esbuild": "0.25.5",
+      "eslint": "^9.39.4",
+      "eslint-plugin-obsidianmd": "^0.4.1",
+      "globals": "^17.6.0",
+      "jiti": "^2.6.1",
+      "obsidian": "latest",
+      "typescript": "^5.8.3",
+      "typescript-eslint": "^8.59.1",
+      "vitest": "^3.0.0"
+    },
+    "declaredLockLicenses": {
+      "MIT": 401,
+      "Apache-2.0": 26,
+      "BlueOak-1.0.0": 1,
+      "Python-2.0": 1,
+      "ISC": 28,
+      "MPL-2.0": 1,
+      "BSD-2-Clause": 7,
+      "BSD-3-Clause": 7,
+      "0BSD": 1
+    },
+    "evidence": [
+      {
+        "path": "LICENSE",
+        "sha256": "7790d3abf48dea42ee7c45a382c2bc727c7c139ecfca253cfd9b6d697d262618"
+      },
+      {
+        "path": "manifest.json",
+        "sha256": "6a4c509baece1ca6783a62e4f1f7cce68afcd844f25bb41a08eb7178c363632e"
+      },
+      {
+        "path": "package.json",
+        "sha256": "83ec20815e657b04eb48c03588eb177b71bad37a5281213fbf67fee7b3111a0b"
+      },
+      {
+        "path": "package-lock.json",
+        "sha256": "50c75ffacf33768f9984583b743f791e5c5a6a919420e9a83744e07907d837e4"
+      },
+      {
+        "path": "esbuild.config.mjs",
+        "sha256": "b51afb26111f302091fb8686e80d04e64c11866f4f51bf3299c9172826635d1a"
+      },
+      {
+        "path": "src/view/GraphController.ts",
+        "sha256": "506547345e0d9afa926508c9c8b80a8c9348562eef8abc826d841fc4b63e23ab"
+      },
+      {
+        "path": "src/data/GraphStore.ts",
+        "sha256": "dd52790fa1e65eaeedb5c9769d6d76f23b5729f5bc87398ff36a8b74d1a3836e"
+      },
+      {
+        "path": "src/render/AggregateRenderer.ts",
+        "sha256": "8d7a76f64afcd82b71b6367bb22a7ec2c72433b1227ae55b8247939d6754021d"
+      },
+      {
+        "path": "src/layout/WorkerForceLayout.ts",
+        "sha256": "89f10254d52e410263719e2c35a94d17a5f042256de6b1ba3620a48da1b63bbb"
+      }
+    ],
+    "copiedIntoRipple": []
+  }
+]
