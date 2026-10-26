@@ -1,0 +1,60 @@
+name: CI
+on:
+  push:
+    branches: [main, feat/ripple-graph-filter]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  quality:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm run bench
+      - uses: actions/upload-artifact@v4
+        with:
+          name: validation-${{ matrix.os }}
+          path: |
+            reports/
+            dist/
+  reproducible:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build && npm run check:artifacts
+      - run: cp dist/SHA256SUMS.txt /tmp/ripple-sums && npm run build && npm run check:artifacts && diff /tmp/ripple-sums dist/SHA256SUMS.txt
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: python -m pip install -r tests/browser/requirements.txt
+      - run: python -m playwright install --with-deps chromium
+      - run: npm run test:browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-fixture
+          path: reports/browser/

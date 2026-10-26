@@ -1,0 +1,10 @@
+{
+  "id": "ripple-graph-filter",
+  "name": "Ripple Graph Filter",
+  "version": "0.1.0-alpha.1",
+  "minAppVersion": "1.14.5",
+  "description": "Filter a local graph using explainable keyword relevance and a reversible threshold.",
+  "author": "styayur",
+  "authorUrl": "https://github.com/styayur",
+  "isDesktopOnly": true
+}
