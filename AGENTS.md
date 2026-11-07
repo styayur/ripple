@@ -34,6 +34,7 @@ npm run build
 ```
 
 Authoritative CI entrypoints:
+
 - `.github/workflows/ci.yml` — CI
 
 Platform-specific, real-device, signing, paid-provider and Windows-native tests must run on their appropriate runners. A Linux Codespace result is not evidence for those tests.
