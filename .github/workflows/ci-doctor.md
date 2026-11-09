@@ -6,9 +6,9 @@ description: |
 
 on:
   workflow_run:
-    workflows: ["CI"]
+    workflows: ['CI']
     types: [completed]
-    branches: ["main"]
+    branches: ['main']
   workflow_dispatch:
 
 if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'failure' }}
@@ -21,7 +21,7 @@ permissions:
 
 safe-outputs:
   create-issue:
-    title-prefix: "[CI failure] "
+    title-prefix: '[CI failure] '
     max: 1
   add-comment:
     max: 1
@@ -109,9 +109,11 @@ Otherwise, create one issue with this structure:
 
 ```markdown
 ## Summary
+
 [What failed and the likely root cause]
 
 ## Failure details
+
 - **Run**: [run link]
 - **Commit**: [head SHA]
 - **Failed job and step**: [job and step]
@@ -119,12 +121,15 @@ Otherwise, create one issue with this structure:
 - **Confidence**: [high, medium, or low]
 
 ## Evidence
+
 [The smallest useful log excerpts and relevant repository changes]
 
 ## Recommended actions
+
 - [ ] [Specific repair or confirmation step]
 
 ## Prevention
+
 [A focused measure that would prevent or detect this failure earlier]
 ```
 

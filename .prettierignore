@@ -4,3 +4,6 @@ main.js
 reports
 LICENSE
 package-lock.json
+
+# gh-aw compiler-owned output; format sources, then regenerate locks.
+.github/workflows/*.lock.yml

@@ -39,15 +39,15 @@ tools:
 safe-outputs:
   create-pull-request:
     draft: true
-    title-prefix: "[dependency-remediation] "
+    title-prefix: '[dependency-remediation] '
     labels: [automation, dependencies]
     max: 3
   push-to-pull-request-branch:
-    target: "*"
-    required-title-prefix: "[dependency-remediation] "
+    target: '*'
+    required-title-prefix: '[dependency-remediation] '
     max: 2
   create-issue:
-    title-prefix: "[dependency-remediation] "
+    title-prefix: '[dependency-remediation] '
     labels: [automation, dependencies]
     max: 2
 

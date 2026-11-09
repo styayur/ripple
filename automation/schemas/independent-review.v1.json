@@ -40,23 +40,13 @@
       "minimum": 1
     },
     "verdict": {
-      "enum": [
-        "APPROVE",
-        "CHANGES_REQUIRED",
-        "BLOCKED",
-        "NOT_VERIFIED"
-      ]
+      "enum": ["APPROVE", "CHANGES_REQUIRED", "BLOCKED", "NOT_VERIFIED"]
     },
     "findings": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": [
-          "path",
-          "line",
-          "severity",
-          "reason"
-        ],
+        "required": ["path", "line", "severity", "reason"],
         "additionalProperties": false,
         "properties": {
           "path": {
@@ -67,12 +57,7 @@
             "minimum": 1
           },
           "severity": {
-            "enum": [
-              "critical",
-              "high",
-              "medium",
-              "low"
-            ]
+            "enum": ["critical", "high", "medium", "low"]
           },
           "reason": {
             "type": "string",
@@ -85,11 +70,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": [
-          "name",
-          "conclusion",
-          "headSha"
-        ],
+        "required": ["name", "conclusion", "headSha"],
         "properties": {
           "name": {
             "type": "string"

@@ -135,16 +135,18 @@ Post one concise comment for maintainers:
 
 [Two or three sentences summarizing the issue and recommended routing.]
 
-| Assessment | Result | Reasoning |
-|---|---|---|
-| Type | [type or unset] | [brief evidence] |
-| Priority | [priority or unset] | [brief evidence] |
-| Coding agent | [suitability] | [brief evidence] |
+| Assessment   | Result              | Reasoning        |
+| ------------ | ------------------- | ---------------- |
+| Type         | [type or unset]     | [brief evidence] |
+| Priority     | [priority or unset] | [brief evidence] |
+| Coding agent | [suitability]       | [brief evidence] |
 
 ### Similar issues
+
 - #[number] — [duplicate or related, with a brief reason]
 
 ### Next step
+
 [One focused action or the specific information still needed.]
 ```
 

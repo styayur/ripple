@@ -24,7 +24,7 @@ tools:
 safe-outputs:
   create-pull-request-review-comment:
     max: 10
-    side: "RIGHT"
+    side: 'RIGHT'
   submit-pull-request-review:
     max: 1
 timeout-minutes: 15
