@@ -10,7 +10,7 @@ updates:
       timezone: Asia/Singapore
     open-pull-requests-limit: 3
     allow:
-      - dependency-name: "*"
+      - dependency-name: '*'
         update-types:
           - version-update:semver-minor
           - version-update:semver-patch
@@ -18,7 +18,7 @@ updates:
       npm-compatible:
         applies-to: version-updates
         patterns:
-          - "*"
+          - '*'
         update-types:
           - minor
           - patch
@@ -30,7 +30,7 @@ updates:
       timezone: Asia/Singapore
     open-pull-requests-limit: 3
     allow:
-      - dependency-name: "*"
+      - dependency-name: '*'
         update-types:
           - version-update:semver-minor
           - version-update:semver-patch
@@ -38,7 +38,7 @@ updates:
       github-actions-compatible:
         applies-to: version-updates
         patterns:
-          - "*"
+          - '*'
         update-types:
           - minor
           - patch
