@@ -1,8 +1,8 @@
 {
   "environment": "Real installed Obsidian desktop, isolated profile and synthetic vault",
-  "timestamp": "2026-10-26T14:40:35.336748+00:00",
+  "timestamp": "2026-11-18T15:22:54.902291+00:00",
   "assetHashes": {
-    "main.js": "e19dcbd1a371f47289fbbc9b5573c326c374827fd906d6f8924066abc279d17f",
+    "main.js": "86c7f6528e9095ca7aee876286674eeb4618406752eec0a937cdc1023e2576c4",
     "manifest.json": "6aa0c37296979df16ade1be1a61d3d041d502ff5b1b0af1dbeb8adbfa63bd8d1",
     "styles.css": "78e47d1287b4c8cd87c307af861ff9d98d8075d03e5d9bd5223e541b62500b1d"
   },
@@ -27,9 +27,9 @@
   "appVersion": {
     "appVersion": null,
     "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) obsidian/1.13.7 Chrome/150.0.7871.212 Electron/43.3.0 Safari/537.36",
-    "apiVersion": "1.14.5"
+    "apiVersion": "1.13.7"
   },
-  "pluginReadyWallMs": 405.3428999905009,
+  "pluginReadyWallMs": 484.92519999854267,
   "cameraRestore": {
     "beforeSwitch": {
       "x": -177.82709656601304,
@@ -57,7 +57,10 @@
     "galaxy": "Three.js WebGL2 xyz points + OrbitControls; real orbit tested"
   },
   "unchangedOriginalNotes": true,
-  "operatingSystem": "Windows 11 Home build 26200",
+  "operatingSystem": "Windows 10.0.26300",
+  "sourceCommit": "b6d89c4b871f7cfd327ed8c0ef4f92802b95959d",
+  "lockfileSha256": "c3c714b500934d230481c7824fa2e66c2dc07727ca9a7b0308f44792d0b9b3dd",
+  "testScriptSha256": "1921a4bb748081b00c04cfb4983047a68b81e35d99a9fb6dbef3dcd8e7908519",
   "initialNoteCount": 32,
   "existingUserVault": "NOT ACCESSED"
 }

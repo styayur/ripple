@@ -8,11 +8,11 @@ libraries. No source from the four reference Obsidian plugins was copied.
 
 | Distribution | Fixed version | Source / files                                                                                                                                  | License and copyright                     | Changes in Ripple                                           |
 | ------------ | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- | ----------------------------------------------------------- |
-| three        | 0.186.1       | https://github.com/mrdoob/three.js ; build/three.module.js, build/three.core.js, examples/jsm/controls/OrbitControls.js and its Controls import | MIT; Copyright 2010–2026 three.js authors | Imported API; bundled/minified without source modifications |
-| d3-force     | 3.0.0         | https://github.com/d3/d3-force ; src modules listed in build evidence                                                                           | ISC; Copyright 2010–2021 Mike Bostock     | Used by the embedded layout worker; no source modifications |
-| d3-dispatch  | 3.0.1         | https://github.com/d3/d3-dispatch ; src modules                                                                                                 | ISC; Copyright 2010–2021 Mike Bostock     | Transitive d3-force library, bundled in worker              |
-| d3-quadtree  | 3.0.1         | https://github.com/d3/d3-quadtree ; src modules                                                                                                 | ISC; Copyright 2010–2021 Mike Bostock     | Transitive d3-force library, bundled in worker              |
-| d3-timer     | 3.0.1         | https://github.com/d3/d3-timer ; src modules                                                                                                    | ISC; Copyright 2010–2021 Mike Bostock     | Transitive d3-force library, bundled in worker              |
+| three        | 0.187.0       | https://github.com/mrdoob/three.js ; build/three.module.js, build/three.core.js, examples/jsm/controls/OrbitControls.js and its Controls import | MIT; Copyright 2010–2026 three.js authors | Imported API; bundled/minified without source modifications |
+| d3-force     | 3.0.1         | https://github.com/d3/d3-force ; src modules listed in build evidence                                                                           | ISC; Copyright 2010–2021 Mike Bostock     | Used by the embedded layout worker; no source modifications |
+| d3-dispatch  | 3.0.2         | https://github.com/d3/d3-dispatch ; src modules                                                                                                 | ISC; Copyright 2010–2021 Mike Bostock     | Transitive d3-force library, bundled in worker              |
+| d3-quadtree  | 3.0.2         | https://github.com/d3/d3-quadtree ; src modules                                                                                                 | ISC; Copyright 2010–2021 Mike Bostock     | Transitive d3-force library, bundled in worker              |
+| d3-timer     | 3.0.2         | https://github.com/d3/d3-timer ; src modules                                                                                                    | ISC; Copyright 2010–2021 Mike Bostock     | Transitive d3-force library, bundled in worker              |
 
 Exact npm versions, registry source URLs and tarball integrity values are
 locked in package-lock.json. Full original LICENSE texts for **all five**
@@ -57,12 +57,12 @@ transitive packages or import their dependencies into Ripple.
 | obsidian              | 1.14.4  | MIT; https://github.com/obsidianmd/obsidian-api             |
 | typescript            | 6.0.3   | Apache-2.0; https://github.com/microsoft/TypeScript         |
 | esbuild               | 0.28.2  | MIT; https://github.com/evanw/esbuild                       |
-| eslint                | 10.13.0 | MIT; https://github.com/eslint/eslint                       |
-| typescript-eslint     | 8.72.0  | MIT; https://github.com/typescript-eslint/typescript-eslint |
-| prettier              | 3.9.10  | MIT; https://github.com/prettier/prettier                   |
+| eslint                | 10.14.0 | MIT; https://github.com/eslint/eslint                       |
+| typescript-eslint     | 8.72.2  | MIT; https://github.com/typescript-eslint/typescript-eslint |
+| prettier              | 3.10.0  | MIT; https://github.com/prettier/prettier                   |
 | tsx                   | 4.23.15 | MIT; https://github.com/privatenumber/tsx                   |
-| @types/node           | 26.6.5  | MIT; https://github.com/DefinitelyTyped/DefinitelyTyped     |
-| @types/three          | 0.186.0 | MIT; https://github.com/DefinitelyTyped/DefinitelyTyped     |
+| @types/node           | 26.6.6  | MIT; https://github.com/DefinitelyTyped/DefinitelyTyped     |
+| @types/three          | 0.187.0 | MIT; https://github.com/DefinitelyTyped/DefinitelyTyped     |
 | @types/d3-force       | 3.0.10  | MIT; https://github.com/DefinitelyTyped/DefinitelyTyped     |
 | spdx-expression-parse | 5.0.0   | MIT; https://github.com/jslicense/spdx-expression-parse.js  |
 
