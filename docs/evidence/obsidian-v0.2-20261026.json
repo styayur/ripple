@@ -1,0 +1,63 @@
+{
+  "environment": "Real installed Obsidian desktop, isolated profile and synthetic vault",
+  "timestamp": "2026-10-26T14:40:35.336748+00:00",
+  "assetHashes": {
+    "main.js": "e19dcbd1a371f47289fbbc9b5573c326c374827fd906d6f8924066abc279d17f",
+    "manifest.json": "6aa0c37296979df16ade1be1a61d3d041d502ff5b1b0af1dbeb8adbfa63bd8d1",
+    "styles.css": "78e47d1287b4c8cd87c307af861ff9d98d8075d03e5d9bd5223e541b62500b1d"
+  },
+  "checks": [
+    "Real Obsidian opened the newly created isolated vault",
+    "Production plugin loaded from the three installation assets",
+    "Workspace opened with all 32 Markdown nodes indexed",
+    "All four modes initialized with identical actual filtered IDs at 65%",
+    "Query, threshold and selected node survive every mode switch",
+    "Real WebGL orbit and independent cameras survive switches",
+    "Canvas node click opens the corresponding real Markdown note",
+    "Frontier pin, fit and reset actions operate on Ripple-owned state",
+    "Invalid queries leave the last successful graph intact",
+    "Actual Obsidian appearance changes update the light/dark workspace",
+    "Real file create, metadata modification and delete incrementally update the graph",
+    "Closing/reopening a workspace leaf restores the saved mode and camera",
+    "Plugin disable/re-enable releases resources and creates a working indexed workspace"
+  ],
+  "debugger": "Chrome/150.0.7871.212",
+  "runtimeErrors": [],
+  "vaultIsolationVerified": true,
+  "appVersion": {
+    "appVersion": null,
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) obsidian/1.13.7 Chrome/150.0.7871.212 Electron/43.3.0 Safari/537.36",
+    "apiVersion": "1.14.5"
+  },
+  "pluginReadyWallMs": 405.3428999905009,
+  "cameraRestore": {
+    "beforeSwitch": {
+      "x": -177.82709656601304,
+      "y": 265.8046920668004,
+      "z": 51.82358834804015,
+      "zoom": 1,
+      "targetX": -63.356155872737006,
+      "targetY": 73.3520408799884,
+      "targetZ": -36.358374832861784
+    },
+    "afterSwitch": {
+      "x": -177.82709656601304,
+      "y": 265.8046920668004,
+      "z": 51.82358834804015,
+      "zoom": 1,
+      "targetX": -63.356155872737006,
+      "targetY": 73.3520408799884,
+      "targetZ": -36.358374832861784
+    }
+  },
+  "modeEvidence": {
+    "frontier": "Canvas 2D + d3-force worker; pin tested",
+    "dense": "Canvas batched grid/LOD",
+    "cluster": "Folder-seeded label propagation + hulls",
+    "galaxy": "Three.js WebGL2 xyz points + OrbitControls; real orbit tested"
+  },
+  "unchangedOriginalNotes": true,
+  "operatingSystem": "Windows 11 Home build 26200",
+  "initialNoteCount": 32,
+  "existingUserVault": "NOT ACCESSED"
+}
